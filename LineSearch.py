@@ -1,4 +1,4 @@
-# THIS FUNCTION HELPS TO SEARCH INDEX OF NUMBER IN ARRAY
+# THIS FUNCTION HELPS TO SEARCH INDEX OF NUMBER IN LIST
 
 def  LineSearch (x,array):
      for i in range (len(array)):
