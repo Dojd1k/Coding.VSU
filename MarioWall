@@ -1,0 +1,19 @@
+# THIS PROGRAM BUILDS MARIO WALL 
+
+symbol = '#'
+space = ' '
+counter = 1
+
+t = False
+while t != True :
+    height = int(input('Enter height: '))
+    print ('Height: ',height)
+    if  height > 0 and height < 23:
+        for i in range (height):
+            i = space*height+counter*symbol
+            height = height-1
+            counter = counter+1
+            print (i)
+            t = True
+    else:
+        print('You entered negative meaning ')
