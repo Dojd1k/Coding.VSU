@@ -1,0 +1,7 @@
+print('Enter time spent in shower (min)')
+x = int(input())
+if x > 0:
+    x = x*12
+    print('You spent ',x,' (0,5L bottles)')
+else:
+    print('You entered negative meaning')
