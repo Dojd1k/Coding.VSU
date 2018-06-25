@@ -11,4 +11,4 @@ for i in message:
         mes_range.append(alph[alph.index(i) + shift])
 for i in range(len(mes_range)):
     new_mes += mes_range[i]
-print('Зашифрованное сообщение: ', new_mes)
+print('Secret message: ', new_mes)
