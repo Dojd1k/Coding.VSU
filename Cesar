@@ -1,0 +1,14 @@
+message = input('Enter your message: ').lower()
+alph = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+      'q','r','s','t','u','v','w','x','y','z']
+shift = int(input('Enter key: '))
+mes_range = []
+new_mes = ''
+for i in message:
+    if i not in alph:
+             mes_range.append(i)
+    else:
+        mes_range.append(alph[alph.index(i) + shift])
+for i in range(len(mes_range)):
+    new_mes += mes_range[i]
+print('Зашифрованное сообщение: ', new_mes)
