@@ -1,0 +1,32 @@
+"""This program helps to count min coins for your cashback"""
+money= int(input('Print your cashback: '))
+cash= int(money)
+cash25= 0
+cash10= 0
+cash5= 0
+cash1= 0
+counter= 0
+
+
+if cash < 0:
+    print('wrong vallue')
+else:
+    while cash > 0:
+        if cash >= 25:
+            cash = cash - 25
+            cash25 = cash25 + 1
+            counter = counter + 1
+        elif cash >= 10:
+            cash = cash - 10
+            cash10 = cash10 + 1
+            counter = counter + 1
+        elif cash >= 5:
+            cash = cash - 5
+            cash5 = cash5 + 1
+            counter = counter + 1
+        elif cash >= 1:
+            cash = cash - 1
+            cash1= cash1 + 1
+            counter= counter + 1
+    print('Your cashback: ',money,'\n Min Number of coins: ',counter,'\n coins of 25: ',cash25,'\n coins of 10: ',cash10
+          ,'\n coins of 5: ',cash5,'\n coins of 1: ',cash1)
