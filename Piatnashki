@@ -1,0 +1,180 @@
+#include <iostream>
+#include <conio.h>
+#include <ctime>
+#include <iomanip>
+#include <windows.h>
+using namespace std;
+int nolb1(int mas[][4], int row, int col, int size)       //находим место положения нуля в колоне
+{
+    for(int i=0; i<size; i++)         
+    {
+        for(int j=0; j<size; j++)
+        {
+            if(mas[i][j]==0)
+            {
+                col=j;
+                return col;
+            }
+        }
+    }
+}
+int nolb2(int mas[][4], int row, int col, int size)         //находим место положения нуля в строке
+{
+    for(int i=0; i<size; i++)         
+    {
+        for(int j=0; j<size; j++)
+        {
+            if(mas[i][j]==0)
+            {
+                row=i;
+                return row;
+            }
+        }
+    }
+}
+ 
+int test(int mas[][4], int arrow[][4], int size, int m)        //делаем проверку, не собрана ли у нас пятнашки
+{
+    for(int i=0, counter=0, k=0; i<size; i++,counter++)         
+    {
+        for(int j=0; j<size; j++)
+        {
+ 
+            if(mas[i][j]!=arrow[i][j])
+            {
+                return 0;
+            }
+            if(counter==15)
+            {
+                cout<<"Pyatnashki sobrani"<<endl;
+                return m;
+            }
+        }
+    }
+}
+ 
+void watch(int mas[][4],int size)                    // посмотрели на пятнашки
+{
+        for(int i=0; i<size; i++)               
+    {
+        for(int j=0; j<size; j++)
+        {
+            cout<<setw(3)<<mas[i][j];
+        }
+        cout<<endl<<endl;
+    }
+    cout<<endl;
+}
+ 
+int main()
+{
+    srand((unsigned)time(NULL));
+    SetConsoleOutputCP(1251); 
+    SetConsoleCP(1251);
+    int knopka=0, m=0;
+    const int size=4;
+    int mas[size][size]={0};
+    int arrow[size][size]={0};
+    int row=0, col=0, nomber=15;
+    while (nomber>0)                       // генерируем случаую пятнашку
+    {
+        row=rand()%4;    
+        col=rand()%4;    
+        if(mas[row][col]==0)  
+        {
+            mas[row][col]=nomber;  
+            nomber--;     
+        }
+    }
+ 
+    watch(mas,size);   //смотрим первый раз на пятнашки
+     
+ 
+    for(int i=0, t=1; i<size; i++)              // генерируем собраные пятнашки, для проверки
+    {
+        for(int j=0; j<size; j++,t++)
+        {
+            arrow[i][j]+=t;
+            arrow[3][3]=0;
+            cout<<setw(3)<<arrow[i][j];
+        }
+        cout<<endl<<endl;
+    }
+    cout<<endl;
+ 
+    test(mas,arrow,size,m);       // проверяем не совпяли ли пятнашки
+    
+    nolb1(mas,row,col,size);      //елси не совпали ищем место положение нуля в колонке
+    nolb2(mas,row,col,size);      // место положение нуля в строке 
+ 
+    cout<<"1-вверх, 2-вниз, 3-влево, 4-вправо"<<endl;
+    for(m=0; m==0; )                                          // упровляем пятнашками
+    {
+        cin>>knopka;
+        if(knopka==1)
+        {
+            if(row==0)
+            {
+                break;
+            }
+            else
+            {
+                int tmp=mas[row][col];
+                mas[row][col]=mas[row+1][col];
+                mas[row+1][col]=tmp;
+                row++;
+            }
+            watch(mas,size);
+            test(mas,arrow,size,m); 
+        }
+ 
+        if(knopka==2)
+        {
+            if(row==3)
+            {
+                break;
+            }
+            else
+            {
+                int tmp=mas[row][col];
+                mas[row][col]=mas[row-1][col];
+                mas[row-1][col]=tmp;
+                row--;
+            }
+            watch(mas,size);
+            test(mas,arrow,size,m); 
+        }
+        if(knopka==3)
+        {
+            if(col==0)
+            {
+                break;
+            }
+            else
+            {
+                int tmp=mas[row][col];
+                mas[row][col]=mas[row][col-1];
+                mas[row][col-1]=tmp;
+                col--;
+            }
+            watch(mas,size);
+            test(mas,arrow,size,m); 
+        }
+        if(knopka==4)
+        {
+            if(col==3)
+            {
+                break;
+            }
+            else
+            {
+                int tmp=mas[row][col];
+                mas[row][col]=mas[row][col+1];
+                mas[row][col+1]=tmp;
+                col++;
+            }
+            watch(mas,size);
+            test(mas,arrow,size,m); 
+        }
+    }
+}
